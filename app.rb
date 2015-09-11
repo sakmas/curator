@@ -1,5 +1,6 @@
 require 'sinatra'
 
 get '/' do
-  'Hello World!'
+  @title = "こんにちは"
+  erb :index
 end

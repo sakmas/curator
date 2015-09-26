@@ -1,1 +1,10 @@
-<h2>test</h2>
+<table class="table table-hover">
+  <thead>
+    <tr><th>タイトル</th></tr>
+  </thead>
+  <tbody>
+    <% @array.each do |val| %>
+      <tr><td><a href="<%= val[:url] %>" target="new"><%= val[:title] %></td></tr>
+    <% end %>
+  </tbody>
+</table>

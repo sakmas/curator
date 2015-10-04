@@ -1,24 +1,15 @@
 require 'sinatra'
 require 'feedjira'
+require 'yaml'
 
-get '/' do
-  url = "http://b.hatena.ne.jp/entrylist/it?mode=rss&sort=recent"
-  feed = Feedjira::Feed.fetch_and_parse url
-  @array = feed.entries.map{|entry|
-    {
-      "title": entry.title,
-      "url": entry.url
-    }
-  }
-  erb :index
+configure  do
+  set :rssList, YAML.load_file('rss.yml')
 end
 
-
-# hatena rss
-# https://syncer.jp/hatebu-api-matome
-# http://b.hatena.ne.jp/entrylist/it?mode=rss
-# http://b.hatena.ne.jp/entrylist/it?mode=rss&sort=recent
-
-
-# rss parser
-# http://feedjira.com/
+get '/' do
+  @feeds = []
+  settings.rssList.each do |url|
+    @feeds.push(Feedjira::Feed.fetch_and_parse url)
+  end
+  erb :index
+end

@@ -1,12 +1,12 @@
 <% @feeds.each do |feed| %>
-  <table class="table table-hover">
+  <table class="table">
     <thead>
       <tr><th><%= feed.title %></th></tr>
     </thead>
     <tbody>
         <% feed.entries.each do |entry| %>
           <tr><td>
-            <div><%= entry.published.strftime("%m/%d %I:%M") %></div>
+            <small><%= entry.published.strftime("%m/%d %I:%M") %></small>
             <a href="<%= entry.url %>" target="new"><%= entry.title %>
           </td></tr>
         <% end %>

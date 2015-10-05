@@ -6,7 +6,7 @@
     <tbody>
         <% feed.entries.each do |entry| %>
           <tr><td>
-            <small><%= entry.published.strftime("%m/%d %I:%M") %></small><br>
+            <small class="text-muted"><%= entry.published.strftime("%m/%d %I:%M") %></small><br>
             <a href="<%= entry.url %>" target="new"><%= entry.title %>
           </td></tr>
         <% end %>
